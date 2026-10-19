@@ -14,9 +14,9 @@ a {
   color: #8b3f16;
 }
 
-a:focus {
+/*a:focus {
   outline: none;
-}
+}*/
 
 .site-header,
 main,
