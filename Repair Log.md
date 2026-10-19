@@ -11,7 +11,8 @@ Target and symptom: Missing meta viewport in head which affects how the CSS disp
 Cause: Missing element in head.
 Correction: Added viewport meta to determine the width of the site via the width of the device viewing the site.
 Evidence: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport#viewport_width_and_screen_width 
-Verification: What test did you repeat, and what happened?
+Verification: Loaded the site on mobile and observed the differences with and without the viewport setting enabled. There is still some horizontal
+    scrolling required (I assume from a CSS error) but the default size is much better with the viewport enabled.
 
 I3
 Target and symptom: Clicking on the 'Resources' link in the nav leads to a file not found error page.
@@ -56,29 +57,30 @@ Evidence: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Ac
 Verification: Reinstating this line of code has the outline vanish again.
 
 C2
-Target and symptom: What failed or was inappropriate?
-Cause: Which markup, path, selector, declaration, or condition caused it?
-Correction: What did you change?
-Evidence: Which MDN page, browser observation, or validator result supports the decision?
-Verification: What test did you repeat, and what happened?
+Target and symptom: The fixed width of the site-header, main, and footer causes horizontal scrolling on screens smaller than 1100px.
+Cause: Width is set to 1100px for site-header, main, and footer.
+Correction: I set the width to 90% so it dynamically scales with the screen size.
+Evidence: Observed the content changing sizes depending on the window size.
+Verification: Set the width to 100% and 80% to see how that affected the look as well.
 
 C3
-Target and symptom: What failed or was inappropriate?
-Cause: Which markup, path, selector, declaration, or condition caused it?
-Correction: What did you change?
-Evidence: Which MDN page, browser observation, or validator result supports the decision?
-Verification: What test did you repeat, and what happened?
+Target and symptom: The cards on the main page overflow the main section if the screen is too narrow.
+Cause: A fixed card width of 300px causes this overflow.
+Correction: Changed the card width to be 1fr and for the cards to stack in a column if the screen is less than 800px.
+Evidence: The resulting look stays within the bounds of the main section and looks nicer.
+Verification: Changed the width of the cards to various pixel sizes to see the results.
 
 C4
-Target and symptom: What failed or was inappropriate?
-Cause: Which markup, path, selector, declaration, or condition caused it?
-Correction: What did you change?
-Evidence: Which MDN page, browser observation, or validator result supports the decision?
-Verification: What test did you repeat, and what happened?
+Target and symptom: The orange color of 'featured card' overrides the green color of 'featured'
+Cause: Caused by the 'featured card' having a higher weight in the CSS.
+Correction: Added the 'where' exception to 'featured card' to allow the other style to take priority.
+Evidence: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Specificity#the_where_exception 
+Verification: Tried using this on headers as well to see if it had the same effect and it did.
 
 C5
-Target and symptom: What failed or was inappropriate?
-Cause: Which markup, path, selector, declaration, or condition caused it?
-Correction: What did you change?
-Evidence: Which MDN page, browser observation, or validator result supports the decision?
-Verification: What test did you repeat, and what happened?
+Target and symptom: The screen can never be less than 500px and more than 700px at the same time.
+Cause: Caused by media query min and max conditions being impossible.
+Correction: Changed maximum width from 500px to 700px and deleted minimum width so that the site looks nicer at scales under 500px.
+Evidence: Observed smaller screen now has the nav and the cards wrap nicely to fit better.
+Verification: Tried just swapping the numbers, but this only allowed the media condition for 200 pixels and the site looked odd at under 500px where the
+    nav got squished back on the right and the card columns become hard to read.
